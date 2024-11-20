@@ -32,6 +32,8 @@
 #define timer1Sec1 5
 #define timer1Sec2 6
 #define timer250ms 7
+#define timerAnimation1 8
+#define timerAnimation2 9
 #define ON 1
 #define OFF 0
 
@@ -51,4 +53,5 @@ extern int toggle;
 extern int countDown1;
 extern int countDown2;
 
+extern int EN0, EN1, EN2, EN3;
 #endif /* INC_GLOBAL_H_ */

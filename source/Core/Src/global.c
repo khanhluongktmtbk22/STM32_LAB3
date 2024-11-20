@@ -24,6 +24,8 @@ int setTimeGreen = 1;
 int countDown1 = 0;
 int countDown2 = 0;
 
+int EN0 = 0, EN1 = 1, EN2 = 0, EN3 = 1;
+
 
 
 

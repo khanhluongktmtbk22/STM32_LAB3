@@ -291,29 +291,89 @@ void display7Seg3(int num){
 	}
 }
 
+
+void animation1(){
+	if(timer_flag[timerAnimation1] == 1){
+		if(EN0 == 1){
+			EN0 = 0;
+			EN1 = 1;
+			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, EN0);
+			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, EN1);
+			display7Seg0(countDown1%10);
+		}
+		else{
+			EN0 = 1;
+			EN1 = 0;
+			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, EN0);
+			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, EN1);
+			display7Seg0(countDown1/10);
+		}
+		setTimer(timerAnimation1, 10);
+	}
+}
+
+void animation2(){
+	if(timer_flag[timerAnimation2] == 1){
+		if(EN2 == 1){
+			EN2 = 0;
+			EN3 = 1;
+			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, EN2);
+			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, EN3);
+			display7Seg1(countDown2%10);
+		}
+		else{
+			EN2 = 1;
+			EN3 = 0;
+			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, EN2);
+			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, EN3);
+			display7Seg1(countDown2/10);
+		}
+		setTimer(timerAnimation2, 10);
+	}
+}
+
 void setCountDown7Seg0(int num){
 	countDown1 = num;
-	display7Seg0(countDown1);
+	EN0 = 0;
+	EN1 = 1;
+	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, EN0);
+	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, EN1);
+	display7Seg0(countDown1%10);
 	setTimer(timer1Sec1, 100);
 }
 
 void setCountDown7Seg1(int num){
 	countDown2 = num;
-	display7Seg1(countDown2);
+	EN2 = 0;
+	EN3 = 1;
+	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, EN2);
+	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, EN3);
+	display7Seg1(countDown2%10);
 	setTimer(timer1Sec2, 100);
 }
 
 void runCountDown7Seg0(){
+	animation1();
 	if(timer_flag[timer1Sec1] == 1){
 		countDown1--;
 		setTimer(timer1Sec1, 100);
-		display7Seg0(countDown1);
+		EN0 = 0;
+		EN1 = 1;
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, EN0);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, EN1);
+		display7Seg0(countDown1%10);
+		EN0 = 0;
 	}
 }
 void runCountDown7Seg1(){
+	animation2();
 	if(timer_flag[timer1Sec2] == 1){
 		countDown2--;
 		setTimer(timer1Sec2, 100);
-		display7Seg1(countDown2);
+		EN2 = 0;
+		EN3 = 1;
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, EN2);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, EN3);
+		display7Seg1(countDown2%10);
 	}
 }

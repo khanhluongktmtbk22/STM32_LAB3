@@ -8,7 +8,7 @@
 #ifndef INC_SOFTWARE_TIMER_H_
 #define INC_SOFTWARE_TIMER_H_
 
-#define no_timer 10
+#define no_timer 11
 extern int timer_flag[no_timer];
 
 
